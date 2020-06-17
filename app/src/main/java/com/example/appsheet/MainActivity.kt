@@ -11,14 +11,14 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import java.sql.Timestamp
 
 
 class MainActivity : AppCompatActivity() {
 
-    private val PERMISSION_CODE = 1000;
+    private val PERMISSION_CODE = 1000
     private val IMAGE_CAPTURE_CODE = 1001
     var image_uri: Uri? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,17 +49,15 @@ class MainActivity : AppCompatActivity() {
         }
         next_btn.setOnClickListener {
             val intent = Intent(this, MainActivity2::class.java)
-            val uriPath = image_uri!!.path
-            val stUri = uriPath.toString()
-            intent.putExtra("img", stUri)
-            //intent.putExtra("img", image_uri)
+            val named = MediaStore.Images.Media.TITLE
+            intent.putExtra("named", named)
             startActivity(intent)
         }
     }
 
     private fun openCamera() {
         val values = ContentValues()
-        values.put(MediaStore.Images.Media.TITLE, "New Picture")
+        values.put(MediaStore.Images.Media.TITLE, Timestamp(System.currentTimeMillis()).toString())
         values.put(MediaStore.Images.Media.DESCRIPTION, "From the Camera")
         image_uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
         //camera intent
