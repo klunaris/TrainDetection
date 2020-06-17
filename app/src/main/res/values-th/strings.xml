@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PassengerTracker</string>
+    <string name="Pattani">ปัตตานี</string>
+    <string name="Next">ถัดไป</string>
+    <string name="Songkhla">สงขลา</string>
+</resources>
